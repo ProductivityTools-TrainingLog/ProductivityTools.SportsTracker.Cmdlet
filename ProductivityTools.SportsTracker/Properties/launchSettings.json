@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "ProductivityTools.SportsTracker": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+      "commandLineArgs": "-noexit -command \"import-module D:\\GitHub\\ProductivityTools.SportsTracker\\ProductivityTools.SportsTracker\\bin\\Debug\\netstandard2.0\\ProductivityTools.SportsTracker.dll\""
+    }
+  }
+}
