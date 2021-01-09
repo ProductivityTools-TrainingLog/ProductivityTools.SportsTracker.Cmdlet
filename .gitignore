@@ -1,0 +1,12 @@
+[Oo]bj/
+[Bb]in/
+.nuget/
+packages/
+artifacts/
+*.user
+*.suo
+debug/
+out/
+.vs
+src/ProductivityTools.PSFlickr.Configuration/ConfigurationLocal.xml
+tools/
