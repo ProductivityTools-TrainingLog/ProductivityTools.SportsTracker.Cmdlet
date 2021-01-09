@@ -20,12 +20,12 @@ namespace ProductivityTools.SportsTracker.ImportTraining
                 .AddMasterConfiguration(force: true).Build();
 
 
-            var login = configuration["Login"];
+            var username = configuration["UserName"];
             var password = configuration["Password"];
-            WriteOutput(login);
+            WriteOutput(username);
             WriteOutput(password);
-            Application app = new Application();
-            app.Login(login, password);
+            Application app = new Application(username, password);
+            app.Login(username, password);
             base.ProcessRecord();
         }
     }
