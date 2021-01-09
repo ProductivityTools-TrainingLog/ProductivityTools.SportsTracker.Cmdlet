@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using ProductivityTools.MasterConfiguration;
+using ProductivityTools.SportsTracker.App;
 using System;
 using System.Collections.Generic;
 using System.Management.Automation;
@@ -16,13 +17,15 @@ namespace ProductivityTools.SportsTracker.ImportTraining
 
 
             IConfigurationRoot configuration = new ConfigurationBuilder()
-                .AddMasterConfiguration(force:true).Build();
+                .AddMasterConfiguration(force: true).Build();
 
 
             var login = configuration["Login"];
             var password = configuration["Password"];
             WriteOutput(login);
             WriteOutput(password);
+            Application app = new Application();
+            app.Login(login, password);
             base.ProcessRecord();
         }
     }

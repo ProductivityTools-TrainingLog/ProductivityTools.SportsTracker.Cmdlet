@@ -14,4 +14,8 @@
     <Folder Include="ImportTraining\Commands\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ProductivityTools.SportsTracker.App\ProductivityTools.SportsTracker.App.csproj" />
+  </ItemGroup>
+
 </Project>
