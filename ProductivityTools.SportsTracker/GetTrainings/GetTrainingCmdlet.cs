@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
@@ -11,7 +12,11 @@ namespace ProductivityTools.SportsTracker.GetTrainings
         protected override void ProcessRecord()
         {
             WriteOutput("Hello TrainingList");
-            base.Application.GetTrainingList();
+            var trainings = base.Application.GetTrainingList();
+            foreach(var training in trainings.OrderBy(x=>x.StartDate))
+            {
+                this.WriteObject(training);
+            }
             base.ProcessRecord();
         }
     }

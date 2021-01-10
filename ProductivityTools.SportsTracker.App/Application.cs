@@ -80,10 +80,20 @@ namespace ProductivityTools.SportsTracker.App
             return sessionKey;
         }
 
-        public void GetTrainingList()
+        public List<Training> GetTrainingList()
         {
+            var trainings = new List<Training>();
             string resultAsString = Client.GetAsync(GetUri("workouts?limited=true&limit=1000000")).Result.Content.ReadAsStringAsync().Result;
             Rootobject jobject = JsonConvert.DeserializeObject<Rootobject>(resultAsString);
+            foreach (var sttraining in jobject.payload)
+            {
+                var training = new Training();
+                training.StartDate = sttraining.StartDate();
+                training.Distance = Math.Round(sttraining.totalDistance / 1000, 2);
+                training.TrainingType = (TrainingType)sttraining.activityId;
+                trainings.Add(training);
+            }
+            return trainings;
         }
     }
 }
