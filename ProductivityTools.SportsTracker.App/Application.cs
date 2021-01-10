@@ -87,10 +87,7 @@ namespace ProductivityTools.SportsTracker.App
             Rootobject jobject = JsonConvert.DeserializeObject<Rootobject>(resultAsString);
             foreach (var sttraining in jobject.payload)
             {
-                var training = new Training();
-                training.StartDate = sttraining.StartDate();
-                training.Distance = Math.Round(sttraining.totalDistance / 1000, 2);
-                training.TrainingType = (TrainingType)sttraining.activityId;
+                var training = new Training(sttraining);
                 trainings.Add(training);
             }
             return trainings;

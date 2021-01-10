@@ -10,5 +10,11 @@ namespace ProductivityTools.SportsTracker.App.Dto
         public double Distance { get; set; }
         public TrainingType TrainingType { get; set; }
 
+        public Training(Payload payload)
+        {
+            this.StartDate = payload.StartDate();
+            this.Distance = Math.Round(payload.totalDistance / 1000, 2);
+            this.TrainingType = (TrainingType)payload.activityId;
+        }
     }
 }
