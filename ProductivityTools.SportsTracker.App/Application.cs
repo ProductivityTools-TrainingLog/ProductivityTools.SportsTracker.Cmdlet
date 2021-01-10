@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using ProductivityTools.SportsTracker.App.Dto;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -81,7 +82,8 @@ namespace ProductivityTools.SportsTracker.App
 
         public void GetTrainingList()
         {
-            var r = Client.GetAsync(GetUri("workouts?limited=true&limit=1000000")).Result;
+            string resultAsString = Client.GetAsync(GetUri("workouts?limited=true&limit=1000000")).Result.Content.ReadAsStringAsync().Result;
+            Rootobject jobject = JsonConvert.DeserializeObject<Rootobject>(resultAsString);
         }
     }
 }
