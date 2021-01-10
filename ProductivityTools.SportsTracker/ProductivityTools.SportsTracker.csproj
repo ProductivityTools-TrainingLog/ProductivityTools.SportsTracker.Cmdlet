@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="AddTraining\Commands\" />
     <Folder Include="ImportTraining\Commands\" />
   </ItemGroup>
 
