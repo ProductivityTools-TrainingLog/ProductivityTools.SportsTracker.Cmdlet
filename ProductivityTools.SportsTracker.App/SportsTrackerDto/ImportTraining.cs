@@ -2,26 +2,24 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ProductivityTools.SportsTracker.App.Dto.TrainingList
+namespace ProductivityTools.SportsTracker.App.SportsTrackerDto.ImportTraining
 {
 
     public class Rootobject
     {
         public object error { get; set; }
-        public Payload[] payload { get; set; }
+        public Payload payload { get; set; }
         public Metadata metadata { get; set; }
-    }
-
-    public class Metadata
-    {
-        public string workoutcount { get; set; }
-        public string until { get; set; }
     }
 
     public class Payload
     {
+        public string username { get; set; }
+        public int sharingFlags { get; set; }
         public int activityId { get; set; }
+        public string key { get; set; }
         public long startTime { get; set; }
+        public long stopTime { get; set; }
         public float totalTime { get; set; }
         public float totalDistance { get; set; }
         public float totalAscent { get; set; }
@@ -30,27 +28,38 @@ namespace ProductivityTools.SportsTracker.App.Dto.TrainingList
         public Stopposition stopPosition { get; set; }
         public Centerposition centerPosition { get; set; }
         public float maxSpeed { get; set; }
+        public string polyline { get; set; }
+        public bool visibilityGroups { get; set; }
+        public bool visibilityExplore { get; set; }
+        public bool visibilityFriends { get; set; }
+        public bool visibilityFacebook { get; set; }
+        public bool visibilityTwitter { get; set; }
+        public int stepCount { get; set; }
         public int recoveryTime { get; set; }
         public int cumulativeRecoveryTime { get; set; }
         public Rankings rankings { get; set; }
-        public Extension[] extensions { get; set; }
-        public string[] extensionTypes { get; set; }
         public float minAltitude { get; set; }
         public float maxAltitude { get; set; }
-        public bool isEdited { get; set; }
         public bool isManuallyAdded { get; set; }
-        public string workoutKey { get; set; }
+        public long lastModified { get; set; }
+        public int reactionCount { get; set; }
+        public int energyConsumption { get; set; }
         public float avgSpeed { get; set; }
         public float avgPace { get; set; }
         public int commentCount { get; set; }
         public int viewCount { get; set; }
-        public int timeOffsetInMinutes { get; set; }
+        public int timeInZone0 { get; set; }
+        public int timeInZone1 { get; set; }
+        public int timeInZone2 { get; set; }
+        public int timeInZone3 { get; set; }
+        public int timeInZone4 { get; set; }
+        public int timeInZone5 { get; set; }
         public Cadence cadence { get; set; }
-        public int energyConsumption { get; set; }
+        public long created { get; set; }
+        public int timeOffsetInMinutes { get; set; }
         public Hrdata hrdata { get; set; }
         public int pictureCount { get; set; }
-        public Externalblobsourceraw externalBlobSourceRaw { get; set; }
-        public Headerblobsourceraw headerBlobSourceRaw { get; set; }
+        public string workoutKey { get; set; }
     }
 
     public class Startposition
@@ -98,27 +107,9 @@ namespace ProductivityTools.SportsTracker.App.Dto.TrainingList
         public int hrmax { get; set; }
     }
 
-    public class Externalblobsourceraw
+    public class Metadata
     {
-        public string path { get; set; }
-        public int gen { get; set; }
-        public string type { get; set; }
-    }
-
-    public class Headerblobsourceraw
-    {
-        public string path { get; set; }
-        public int gen { get; set; }
-        public string type { get; set; }
-    }
-
-    public class Extension
-    {
-        public string type { get; set; }
-        public string weatherIcon { get; set; }
-        public float temperature { get; set; }
-        public float windSpeed { get; set; }
-        public float windDirection { get; set; }
+        public string INFO { get; set; }
     }
 
 }

@@ -85,7 +85,7 @@ namespace ProductivityTools.SportsTracker.App
         {
             var trainings = new List<Training>();
             string resultAsString = Client.GetAsync(GetUri("workouts?limited=true&limit=1000000")).Result.Content.ReadAsStringAsync().Result;
-            Rootobject jobject = JsonConvert.DeserializeObject<Rootobject>(resultAsString);
+            var jobject = JsonConvert.DeserializeObject<ProductivityTools.SportsTracker.App.Dto.TrainingList.Rootobject>(resultAsString);
             foreach (var sttraining in jobject.payload)
             {
                 var training = new Training(sttraining);
@@ -105,60 +105,62 @@ namespace ProductivityTools.SportsTracker.App
             this.Client.DefaultRequestHeaders.Accept.Clear();
 
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("*/*"));
-            string result = this.Client.PostAsync(GetUri("workout/importGpx"), form).Result.Content.ReadAsStringAsync().Result;
+            string resultAsString = this.Client.PostAsync(GetUri("workout/importGpx"), form).Result.Content.ReadAsStringAsync().Result;
+            var jobject = JsonConvert.DeserializeObject<ProductivityTools.SportsTracker.App.SportsTrackerDto.ImportTraining.Rootobject>(resultAsString);
+            this.Client.DeleteAsync(GetUri($"workouts/{jobject.payload.workoutKey}/delete"));
         }
-        public void ImportGpxFile(string path)
-        {
-           var x= UploadFile(GetUri("workout/importGpx").ToString(), path).Result;
-        }
+        //public void ImportGpxFile(string path)
+        //{
+        //   var x= UploadFile(GetUri("workout/importGpx").ToString(), path).Result;
+        //}
 
-        public async Task<string> UploadFile(string actionUrl, string filePath)
-        {
+        //public async Task<string> UploadFile(string actionUrl, string filePath)
+        //{
 
-            FileStream fileStream = File.OpenRead(filePath);
-            var streamContent = new StreamContent(fileStream);
-            streamContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data");
-            streamContent.Headers.ContentDisposition.Name = "\"file\"";
-            streamContent.Headers.ContentDisposition.FileName = "\"" + Path.GetFileName(filePath) + "\"";
-            streamContent.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
-            string boundary = "----WebKitFormBoundaryAFqTXNjdlhl0zwKi";
-            var content = new MultipartFormDataContent(boundary);
-            content.Headers.Remove("Content-Type");
-            content.Headers.TryAddWithoutValidation("Content-Type", "multipart/form-data; boundary=" + boundary);
-            content.Add(streamContent);
-            HttpResponseMessage response = null;
-            try
-            {
-                this.Client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("*/*"));
-                //client.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("gzip"));
-                //client.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("deflate"));
-                //client.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("br"));
+        //    FileStream fileStream = File.OpenRead(filePath);
+        //    var streamContent = new StreamContent(fileStream);
+        //    streamContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data");
+        //    streamContent.Headers.ContentDisposition.Name = "\"file\"";
+        //    streamContent.Headers.ContentDisposition.FileName = "\"" + Path.GetFileName(filePath) + "\"";
+        //    streamContent.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
+        //    string boundary = "----WebKitFormBoundaryAFqTXNjdlhl0zwKi";
+        //    var content = new MultipartFormDataContent(boundary);
+        //    content.Headers.Remove("Content-Type");
+        //    content.Headers.TryAddWithoutValidation("Content-Type", "multipart/form-data; boundary=" + boundary);
+        //    content.Add(streamContent);
+        //    HttpResponseMessage response = null;
+        //    try
+        //    {
+        //        this.Client.DefaultRequestHeaders.Accept.Clear();
+        //        client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("*/*"));
+        //        //client.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("gzip"));
+        //        //client.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("deflate"));
+        //        //client.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("br"));
 
-                response = await this.Client.PostAsync(actionUrl, content);
-            }
-            catch (WebException ex)
-            {
-                // handle web exception
-                return null;
-            }
-            catch (TaskCanceledException ex)
-            {
+        //        response = await this.Client.PostAsync(actionUrl, content);
+        //    }
+        //    catch (WebException ex)
+        //    {
+        //        // handle web exception
+        //        return null;
+        //    }
+        //    catch (TaskCanceledException ex)
+        //    {
 
-            }
+        //    }
 
-            try
-            {
-                response.EnsureSuccessStatusCode();
-            }
-            catch (Exception)
-            {
-                return null;
-            };
+        //    try
+        //    {
+        //        response.EnsureSuccessStatusCode();
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return null;
+        //    };
 
-            string res = await response.Content.ReadAsStringAsync();
-            return await Task.Run(() => res);
-        }
+        //    string res = await response.Content.ReadAsStringAsync();
+        //    return await Task.Run(() => res);
+        //}
     }
 }
 
