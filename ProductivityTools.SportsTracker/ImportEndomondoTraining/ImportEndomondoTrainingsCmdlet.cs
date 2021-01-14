@@ -10,8 +10,8 @@ using System.Text;
 
 namespace ProductivityTools.SportsTracker.ImportTraining
 {
-    [Cmdlet("Import", "Training")]
-    public class ImportTrainingCmdlet : STCmdlet
+    [Cmdlet("Import", "EndomondoTrainings")]
+    public class ImportEndomondoTrainingsCmdlet : STCmdlet
     {
         protected override void ProcessRecord()
         {
