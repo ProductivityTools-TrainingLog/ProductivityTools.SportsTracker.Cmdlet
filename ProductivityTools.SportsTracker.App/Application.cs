@@ -94,7 +94,23 @@ namespace ProductivityTools.SportsTracker.App
             return trainings;
         }
 
-        public void ImportGpxFile(byte[] content)
+        public void ImportTraining(byte[] content, Training training)
+        {
+            string workoutKey=ImportGpxFile(content);
+            var importTraining = new ProductivityTools.SportsTracker.App.SportsTrackerDto.ImportTraining.Training();
+            importTraining.activityId = 1;
+            importTraining.description = "";
+            importTraining.energyConsumption = 22;
+            importTraining.sharingFlags = 33;
+            importTraining.startTime = 333;
+            importTraining.totalDistance = 333;
+            importTraining.totalTime = 222;
+            importTraining.workoutKey = workoutKey;
+
+
+        }
+
+        public string ImportGpxFile(byte[] content)
         {
             var byteArray = new ByteArrayContent(content);
             //byteArray.Headers.ContentType = new MediaTypeHeaderValue("multipart/form-data");
@@ -106,7 +122,8 @@ namespace ProductivityTools.SportsTracker.App
 
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("*/*"));
             string resultAsString = this.Client.PostAsync(GetUri("workout/importGpx"), form).Result.Content.ReadAsStringAsync().Result;
-            var jobject = JsonConvert.DeserializeObject<ProductivityTools.SportsTracker.App.SportsTrackerDto.ImportTraining.Rootobject>(resultAsString);
+            var jobject = JsonConvert.DeserializeObject<ProductivityTools.SportsTracker.App.SportsTrackerDto.ImportGpx.Rootobject>(resultAsString);
+        return jobject.payload.workoutKey;
             this.Client.DeleteAsync(GetUri($"workouts/{jobject.payload.workoutKey}/delete"));
         }
         //public void ImportGpxFile(string path)
