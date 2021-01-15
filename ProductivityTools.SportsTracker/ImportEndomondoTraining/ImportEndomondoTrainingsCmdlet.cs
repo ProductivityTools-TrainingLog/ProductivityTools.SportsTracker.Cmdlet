@@ -15,15 +15,16 @@ namespace ProductivityTools.SportsTracker.ImportTraining
     {
         protected override void ProcessRecord()
         {
-            string s = @"c:\Users\pwujczyk\Downloads\2020-11-08%2009_46_58.0.gpx";
-            byte[] bytes = File.ReadAllBytes(s);
+           // string s = @"c:\Users\pwujczyk\Downloads\2020-11-08%2009_46_58.0.gpx";
+           // byte[] bytes = File.ReadAllBytes(s);
 
             //FileStream fs = new FileStream(@"c:\Users\pwujczyk\Downloads\pawel.gpx", FileMode.Open, FileAccess.Read);
             //byte[] data = new byte[fs.Length];
             //fs.Read(data, 0, data.Length);
             //fs.Close();
             //Invoke2();
-            base.Application.ImportGpxFile(bytes);
+            var import = new ProductivityTools.SportsTracker.Endomondo.EndomondoImport(@"d:\Trash\Workouts\");
+            import.Import();
             base.ProcessRecord();
         }
 
