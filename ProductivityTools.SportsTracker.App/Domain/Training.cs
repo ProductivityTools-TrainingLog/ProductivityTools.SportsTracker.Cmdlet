@@ -10,6 +10,35 @@ namespace ProductivityTools.SportsTracker.App.Dto
         public double Distance { get; set; }
         public TrainingType TrainingType { get; set; }
 
+        public string Description { get; set; }
+        public int EnergyConsumption { get; set; }
+        public int SharingFlags { get; set; }
+
+        public long StartTime
+        {
+            get
+            {
+                return 0;
+            }
+        }
+
+        public int TotalTime
+        {
+            get
+            {
+                return 0;
+            }
+        }
+
+        public int TotalDistance
+        {
+            get
+            {
+                return (int)Distance * 1000;
+            }
+        }
+
+
         public Training(ProductivityTools.SportsTracker.App.Dto.TrainingList.Payload payload)
         {
             this.StartDate = payload.StartDate();
