@@ -7,7 +7,8 @@ namespace ProductivityTools.SportsTracker
 {
     public abstract class STCmdlet : PSCmdlet.PSCmdletPT
     {
-        protected Application Application
+        //maybe move it to command
+        public Application Application
         {
             get
             {
