@@ -94,22 +94,31 @@ namespace ProductivityTools.SportsTracker.App
             return trainings;
         }
 
+        public void AddTraining(Training training)
+        {
+            AddTraining(training, null);
+        }
+
         public void AddTraining(Training training, byte[] gpxFile)
         {
-            var importTraining = new ProductivityTools.SportsTracker.App.SportsTrackerDto.ImportTraining.Training();
-            importTraining.activityId = (int)training.TrainingType;
-            importTraining.description = training.Description;
-            importTraining.energyConsumption = training.EnergyConsumption;
-            importTraining.sharingFlags = training.SharingFlags;
-            importTraining.startTime = training.StartTime;
-            importTraining.totalDistance = training.TotalDistance;
-            importTraining.totalTime = training.TotalTime;
+            var addTraining = new ProductivityTools.SportsTracker.App.SportsTrackerDto.ImportTraining.Training();
+            addTraining.activityId = (int)training.TrainingType;
+            addTraining.description = training.Description;
+            addTraining.energyConsumption = training.EnergyConsumption;
+            addTraining.sharingFlags = training.SharingFlags;
+            addTraining.startTime = training.StartTime;
+            addTraining.totalDistance = training.TotalDistance;
+            addTraining.duration = training.TotalTime;
 
             if (gpxFile != null)
             {
                 string workoutKey = ImportGpxFile(gpxFile);
-                importTraining.workoutKey = workoutKey;
+                addTraining.workoutKey = workoutKey;
             }
+
+            var dataAsString = JsonConvert.SerializeObject(addTraining);
+            var content = new StringContent(dataAsString, Encoding.UTF8, "application/json");
+            var result = this.Client.PostAsync(GetUri("workout"), content);
         }
 
         public string ImportGpxFile(byte[] content)
