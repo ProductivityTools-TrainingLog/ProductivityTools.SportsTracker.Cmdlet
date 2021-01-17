@@ -24,7 +24,8 @@ namespace ProductivityTools.SportsTracker.Endomondo
         public float calories_kcal { get; set; }
         public float speed_avg_kmh { get; set; }
 
-       public List<string> Pictures { get; set; }
+        public List<string> Pictures { get; set; }
+        public bool GPX { get; set; }
     }
 
 

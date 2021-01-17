@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using ProductivityTools.SportsTracker.App.Dto;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,16 +21,38 @@ namespace ProductivityTools.SportsTracker.Endomondo
 
         public void Import()
         {
-            GetTrainings();
+            List<EndoMondoTraining> endomondoTrainings = GetEndomondoTrainings();
+            foreach (var endomondoTraining in endomondoTrainings)
+            {
+                AddTraining(endomondoTraining);
+            }
         }
 
-        private void GetTrainings()
+        private void AddTraining(EndoMondoTraining endomondoTraining)
+        {
+            //Training training = new Training();
+            //training.TrainingType = TrainingType.Fitness;
+            //training.SharingFlags = 19;//public
+            //training.Description = this.Cmdlet.Description;
+            //training.Duration = TimeSpan.FromMinutes(this.Cmdlet.Duration);
+            //training.StartDate = GetStartDate();
+            //training.Distance = 0;
+
+            //string s = @"c:\Users\pwujczyk\Desktop\Pamela.jpg";
+            //byte[] bytes = File.ReadAllBytes(s);
+
+
+            //this.Cmdlet.Application.AddTraining(training, bytes);
+        }
+
+        private List<EndoMondoTraining> GetEndomondoTrainings()
         {
             List<EndoMondoTraining> trainings = new List<EndoMondoTraining>();
             var files = Directory.GetFiles(this.Path, "*.json");
             foreach (var file in files)
             {
                 List<string> pictures = new List<string>();
+                bool points = false;
                 using (StreamReader r = new StreamReader(file))
                 {
                     string json = r.ReadToEnd();
@@ -41,11 +64,10 @@ namespace ProductivityTools.SportsTracker.Endomondo
                         var picturesJson = "{" + json.Substring(picturesplace);
                         string pattern = @"\w*(resources/\w*/\w*/\w*/\w*/\w*.\w*)\w*";
                         Regex rg = new Regex(pattern);
-                        var xxxxx=rg.Matches(picturesJson);
-                        pictures = xxxxx.Cast<string>().ToList();
+                        var xxxxx = rg.Matches(picturesJson);
+                        pictures = xxxxx.Cast<Match>().Select(x => x.Value).ToList();
 
                         json = json.Substring(0, picturesplace - 2) + "]";
-
                     }
 
 
@@ -60,6 +82,7 @@ namespace ProductivityTools.SportsTracker.Endomondo
                     {
                         int picturesplace = json.IndexOf("points");
                         json = json.Substring(0, picturesplace - 2) + "]";
+                        points = true;
                     }
 
                     json = json.Replace("{", "");
@@ -67,13 +90,15 @@ namespace ProductivityTools.SportsTracker.Endomondo
                     json = json.Replace("[", "{");
                     json = json.Replace("]", "}");
 
-                    var items = JsonConvert.DeserializeObject<EndoMondoTraining>(json);
-                    items.Pictures = pictures;
-                    trainings.Add(items);
+                    var item = JsonConvert.DeserializeObject<EndoMondoTraining>(json);
+                    item.Pictures = pictures;
+                    item.GPX = points;
+                    trainings.Add(item);
 
-                    Console.WriteLine($"{items.name} {items.sport} {items.start_time}");
+                    Console.WriteLine($"{item.name} {item.sport} {item.start_time}");
                 }
             }
+            return trainings;
         }
     }
 }
