@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using ProductivityTools.SportsTracker.App.Domain;
 using ProductivityTools.SportsTracker.App.Dto;
 using System;
 using System.Collections.Generic;
@@ -118,7 +119,7 @@ namespace ProductivityTools.SportsTracker.App
 
             var dataAsString = JsonConvert.SerializeObject(addTraining);
             var content = new StringContent(dataAsString, Encoding.UTF8, "application/json");
-            var result = this.Client.PostAsync(GetUri("workout"), content);
+            var result = this.Client.PostAsync(GetUri("workout"), content).Result;
         }
 
         public string ImportGpxFile(byte[] content)
@@ -137,6 +138,31 @@ namespace ProductivityTools.SportsTracker.App
             return jobject.payload.workoutKey;
             this.Client.DeleteAsync(GetUri($"workouts/{jobject.payload.workoutKey}/delete"));
         }
+
+        public void AddTraining(TrainingType trainingType, string description, int duration, DateTime startTime)
+        {
+            var newTraining = new ProductivityTools.SportsTracker.App.SportsTrackerDto.NewTraining.Rootobject();
+            newTraining.activityId = (int)trainingType;
+            newTraining.description = description;
+            newTraining.duration = duration;
+            newTraining.energy = 0;
+            newTraining.sharingFlags = (int)SharintType.Public;
+            newTraining.timeZoneOffset = 0;
+            newTraining.totalDistance = 0;
+            newTraining.startTime = ConvertToUnixTimestamp(startTime)*1000;
+            var dataAsString = JsonConvert.SerializeObject(newTraining);
+            var content = new StringContent(dataAsString, Encoding.UTF8, "application/json");
+
+            var result=this.Client.PostAsync(GetUri("workout").ToString(), content).Result.Content.ReadAsStringAsync().Result;
+        }
+
+        public static double ConvertToUnixTimestamp(DateTime date)
+        {
+            DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+            TimeSpan diff = date.ToUniversalTime() - origin;
+            return Math.Floor(diff.TotalSeconds);
+        }
+
         //public void ImportGpxFile(string path)
         //{
         //   var x= UploadFile(GetUri("workout/importGpx").ToString(), path).Result;

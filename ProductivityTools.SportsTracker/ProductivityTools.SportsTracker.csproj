@@ -6,12 +6,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ImportTraining\**" />
+    <EmbeddedResource Remove="ImportTraining\**" />
+    <None Remove="ImportTraining\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="ProductivityTools.MasterConfiguration" Version="2.0.5" />
     <PackageReference Include="ProductivityTools.PSCmdlet" Version="1.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ImportEndomondoTraining\Commands\" />
+    <Folder Include="AddTraining\Commands\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -8,6 +8,7 @@ namespace ProductivityTools.SportsTracker.App.Dto
     {
         Running = 1,
         Walking = 0,
-        Fitness = 32
+        Fitness = 32,
+        Areobics=69
     }
 }

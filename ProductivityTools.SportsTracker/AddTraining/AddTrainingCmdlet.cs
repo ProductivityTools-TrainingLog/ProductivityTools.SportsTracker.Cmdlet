@@ -1,4 +1,4 @@
-﻿using ProductivityTools.SportsTracker.AddTraining.Commands;
+﻿﻿using ProductivityTools.SportsTracker.AddTraining.Commands;
 using ProductivityTools.SportsTracker.App.Dto;
 using System;
 using System.Collections.Generic;
@@ -24,6 +24,9 @@ namespace ProductivityTools.SportsTracker.AddTraining
 
         [Parameter(HelpMessage = "Time of the training, it will be created in the same day as today. Format HH:MM")]
         public string Time { get; set; }
+
+        [Parameter]
+        public int Minutes { get; set; }
 
         public AddTrainingCmdlet()
         {
