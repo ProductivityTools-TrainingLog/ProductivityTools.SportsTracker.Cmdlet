@@ -2,8 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
+using System.Text.RegularExpressions;
 
 namespace ProductivityTools.SportsTracker.Endomondo
 {
@@ -27,6 +29,7 @@ namespace ProductivityTools.SportsTracker.Endomondo
             var files = Directory.GetFiles(this.Path, "*.json");
             foreach (var file in files)
             {
+                List<string> pictures = new List<string>();
                 using (StreamReader r = new StreamReader(file))
                 {
                     string json = r.ReadToEnd();
@@ -36,7 +39,10 @@ namespace ProductivityTools.SportsTracker.Endomondo
                         int picturesplace = json.IndexOf("pictures");
 
                         var picturesJson = "{" + json.Substring(picturesplace);
-
+                        string pattern = @"\w*(resources/\w*/\w*/\w*/\w*/\w*.\w*)\w*";
+                        Regex rg = new Regex(pattern);
+                        var xxxxx=rg.Matches(picturesJson);
+                        pictures = xxxxx.Cast<string>().ToList();
 
                         json = json.Substring(0, picturesplace - 2) + "]";
 
@@ -54,9 +60,7 @@ namespace ProductivityTools.SportsTracker.Endomondo
                     {
                         int picturesplace = json.IndexOf("points");
                         json = json.Substring(0, picturesplace - 2) + "]";
-
                     }
-
 
                     json = json.Replace("{", "");
                     json = json.Replace("}", "");
@@ -64,6 +68,7 @@ namespace ProductivityTools.SportsTracker.Endomondo
                     json = json.Replace("]", "}");
 
                     var items = JsonConvert.DeserializeObject<EndoMondoTraining>(json);
+                    items.Pictures = pictures;
                     trainings.Add(items);
 
                     Console.WriteLine($"{items.name} {items.sport} {items.start_time}");
