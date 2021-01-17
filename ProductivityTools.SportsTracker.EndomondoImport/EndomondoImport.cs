@@ -30,19 +30,24 @@ namespace ProductivityTools.SportsTracker.Endomondo
 
         private void AddTraining(EndoMondoTraining endomondoTraining)
         {
-            //Training training = new Training();
-            //training.TrainingType = TrainingType.Fitness;
-            //training.SharingFlags = 19;//public
-            //training.Description = this.Cmdlet.Description;
-            //training.Duration = TimeSpan.FromMinutes(this.Cmdlet.Duration);
-            //training.StartDate = GetStartDate();
-            //training.Distance = 0;
+            Training training = new Training();
+            training.TrainingType = GetSport(endomondoTraining.sport);
+            training.SharingFlags = 19;
+            training.Description = endomondoTraining.name;
+            training.Duration = TimeSpan.FromSeconds(endomondoTraining.duration_s);
+            training.StartDate = DateTime.Parse(endomondoTraining.start_time);
+            training.Distance = endomondoTraining.distance_km * 1000;
 
-            //string s = @"c:\Users\pwujczyk\Desktop\Pamela.jpg";
-            //byte[] bytes = File.ReadAllBytes(s);
+            string s = @"c:\Users\pwujczyk\Desktop\Pamela.jpg";
+            byte[] bytes = File.ReadAllBytes(s);
 
 
             //this.Cmdlet.Application.AddTraining(training, bytes);
+        }
+
+        private TrainingType GetSport(string sport)
+        {
+            throw new NotImplementedException();
         }
 
         private List<EndoMondoTraining> GetEndomondoTrainings()
@@ -95,7 +100,7 @@ namespace ProductivityTools.SportsTracker.Endomondo
                     item.GPX = points;
                     trainings.Add(item);
 
-                    Console.WriteLine($"{item.name} {item.sport} {item.start_time}");
+                    Console.WriteLine($"{item.name}");
                 }
             }
             return trainings;
