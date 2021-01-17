@@ -97,10 +97,15 @@ namespace ProductivityTools.SportsTracker.App
 
         public void AddTraining(Training training)
         {
-            AddTraining(training, null);
+            AddTraining(training, null, null);
         }
 
-        public void AddTraining(Training training, byte[] gpxFile)
+        public void AddTraining(Training training, byte[] image)
+        {
+            AddTraining(training, null, image);
+        }
+
+        public void AddTraining(Training training, byte[] gpxFile, byte[] image)
         {
             var addTraining = new ProductivityTools.SportsTracker.App.SportsTrackerDto.ImportTraining.Training();
             addTraining.activityId = (int)training.TrainingType;
@@ -119,7 +124,15 @@ namespace ProductivityTools.SportsTracker.App
 
             var dataAsString = JsonConvert.SerializeObject(addTraining);
             var content = new StringContent(dataAsString, Encoding.UTF8, "application/json");
-            var result = this.Client.PostAsync(GetUri("workout"), content).Result;
+            var result = this.Client.PostAsync(GetUri("workout"), content).Result.Content.ReadAsStringAsync().Result; 
+
+            if (image != null)
+            {
+                var jobject = JsonConvert.DeserializeObject<ProductivityTools.SportsTracker.App.SportsTrackerDto.ImportGpx.Rootobject>(result);
+                var trainingId = jobject.payload.workoutKey;
+
+                ImportFile(GetUri($"workouts/{trainingId}/image/web"),"image", image);
+            }
         }
 
         public string ImportGpxFile(byte[] content)
@@ -139,6 +152,20 @@ namespace ProductivityTools.SportsTracker.App
             this.Client.DeleteAsync(GetUri($"workouts/{jobject.payload.workoutKey}/delete"));
         }
 
+        private string ImportFile(Uri url, string fileName, byte[] content)
+        {
+            var byteArray = new ByteArrayContent(content);
+            byteArray.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
+
+            MultipartFormDataContent form = new MultipartFormDataContent();
+            form.Add(byteArray, "file", fileName);
+            this.Client.DefaultRequestHeaders.Accept.Clear();
+
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("*/*"));
+            string resultAsString = this.Client.PostAsync(url, form).Result.Content.ReadAsStringAsync().Result;
+            return resultAsString;
+        }
+
         public void AddTraining(TrainingType trainingType, string description, int duration, DateTime startTime)
         {
             var newTraining = new ProductivityTools.SportsTracker.App.SportsTrackerDto.NewTraining.Rootobject();
@@ -149,11 +176,11 @@ namespace ProductivityTools.SportsTracker.App
             newTraining.sharingFlags = (int)SharintType.Public;
             newTraining.timeZoneOffset = 0;
             newTraining.totalDistance = 0;
-            newTraining.startTime = ConvertToUnixTimestamp(startTime)*1000;
+            newTraining.startTime = ConvertToUnixTimestamp(startTime) * 1000;
             var dataAsString = JsonConvert.SerializeObject(newTraining);
             var content = new StringContent(dataAsString, Encoding.UTF8, "application/json");
 
-            var result=this.Client.PostAsync(GetUri("workout").ToString(), content).Result.Content.ReadAsStringAsync().Result;
+            var result = this.Client.PostAsync(GetUri("workout").ToString(), content).Result.Content.ReadAsStringAsync().Result;
         }
 
         public static double ConvertToUnixTimestamp(DateTime date)

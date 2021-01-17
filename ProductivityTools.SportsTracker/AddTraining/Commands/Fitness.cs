@@ -1,6 +1,7 @@
 ﻿using ProductivityTools.SportsTracker.App.Dto;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace ProductivityTools.SportsTracker.AddTraining.Commands
@@ -23,7 +24,11 @@ namespace ProductivityTools.SportsTracker.AddTraining.Commands
             training.StartDate = GetStartDate();
             training.Distance = 0;
 
-            this.Cmdlet.Application.AddTraining(training);
+            string s = @"c:\Users\pwujczyk\Desktop\Pamela.jpg";
+            byte[] bytes = File.ReadAllBytes(s);
+
+
+            this.Cmdlet.Application.AddTraining(training, bytes);
         }
 
         private DateTime GetStartDate()
