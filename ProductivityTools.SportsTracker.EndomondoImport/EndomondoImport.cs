@@ -21,8 +21,8 @@ namespace ProductivityTools.SportsTracker.Endomondo
 
         public void Import()
         {
-            List<EndoMondoTraining> endomondoTrainings = GetEndomondoTrainings();
-            foreach (var endomondoTraining in endomondoTrainings)
+            //List<EndoMondoTraining> endomondoTrainings = GetEndomondoTrainings();
+            foreach (var endomondoTraining in GetEndomondoTrainings())
             {
                 AddTraining(endomondoTraining);
             }
@@ -47,10 +47,44 @@ namespace ProductivityTools.SportsTracker.Endomondo
 
         private TrainingType GetSport(string sport)
         {
-            throw new NotImplementedException();
+            switch (sport)
+            {
+                case "SWIMMING": return TrainingType.PoolSwimming;
+                case "WEIGHT_TRAINING": return TrainingType.PoolSwimming;
+                case "TREADMILL_RUNNING": return TrainingType.Treadmill;
+                case "AEROBICS": return TrainingType.Fitness;
+                case "BADMINTON": return TrainingType.Badminton;
+                case "SQUASH": return TrainingType.Badminton;
+                case "DANCING": return TrainingType.Badminton;
+                case "ROLLER_SKATING": return TrainingType.Badminton;
+                case "PILATES": return TrainingType.Fitness;
+                case "CLIMBING": return TrainingType.Fitness;
+                case "OTHER": return TrainingType.Other;
+                case "ROWING":  return TrainingType.Rowing;
+                case "YOGA": return TrainingType.Yoga;
+                case "SKIING_CROSS_COUNTRY": return TrainingType.CrossCountrySkiing;
+                case "FITNESS_WALKING": return TrainingType.NorticWalking;
+                case "KAYAKING": return TrainingType.Kayaking;
+                case "CYCLING_TRANSPORTATION": return TrainingType.Cycling;
+                case "SKIING_DOWNHILL": return TrainingType.AlpineSkiing;
+                case "RUNNING": return TrainingType.Running;
+                case "HIKING": return TrainingType.Hiking;
+                case "WALKING": return TrainingType.Walking;
+                case "ORIENTEERING": return TrainingType.Orienteering;
+                case "TENNIS": return TrainingType.Tennis;
+                case "GYMNASTICS": return TrainingType.Fitness;
+                case "MOUNTAIN_BIKING": return TrainingType.MountainBiking;
+                case "RIDING": return TrainingType.HorsebackRiding;
+                case "ROLLER_SKIING": return TrainingType.IceSkating;
+                case "CYCLING_SPORT":return TrainingType.Cycling;
+                case "TABLE_TENNIS": return TrainingType.TableTennis;
+                case "SKATEBOARDING": return TrainingType.Skateboarding;
+                case "STRETCHING": return TrainingType.Stretching;
+                default: throw new Exception();
+            }
         }
 
-        private List<EndoMondoTraining> GetEndomondoTrainings()
+        private IEnumerable<EndoMondoTraining> GetEndomondoTrainings()
         {
             List<EndoMondoTraining> trainings = new List<EndoMondoTraining>();
             var files = Directory.GetFiles(this.Path, "*.json");
@@ -99,11 +133,11 @@ namespace ProductivityTools.SportsTracker.Endomondo
                     item.Pictures = pictures;
                     item.GPX = points;
                     trainings.Add(item);
-
+                    yield return item;
                     Console.WriteLine($"{item.name}");
                 }
             }
-            return trainings;
+           // return trainings;
         }
     }
 }
