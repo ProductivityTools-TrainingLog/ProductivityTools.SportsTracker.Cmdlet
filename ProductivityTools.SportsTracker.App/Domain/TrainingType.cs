@@ -35,5 +35,10 @@ namespace ProductivityTools.SportsTracker.App.Dto
         TableTennis = 40,
         Skateboarding = 27,
         Stretching = 58,
+        CrossFit = 54,
+        MatirialArts = 62,
+        Soccer = 33,
+        TrailRunning = 22,
+        Surfing = 91,
     }
 }

@@ -55,8 +55,8 @@ namespace ProductivityTools.SportsTracker.Endomondo
                 case "AEROBICS": return TrainingType.Fitness;
                 case "BADMINTON": return TrainingType.Badminton;
                 case "SQUASH": return TrainingType.Badminton;
-                case "DANCING": return TrainingType.Badminton;
-                case "ROLLER_SKATING": return TrainingType.Badminton;
+                case "DANCING": return TrainingType.Dancing;
+                case "ROLLER_SKATING": return TrainingType.RollerSkating;
                 case "PILATES": return TrainingType.Fitness;
                 case "CLIMBING": return TrainingType.Fitness;
                 case "OTHER": return TrainingType.Other;
@@ -75,11 +75,23 @@ namespace ProductivityTools.SportsTracker.Endomondo
                 case "GYMNASTICS": return TrainingType.Fitness;
                 case "MOUNTAIN_BIKING": return TrainingType.MountainBiking;
                 case "RIDING": return TrainingType.HorsebackRiding;
-                case "ROLLER_SKIING": return TrainingType.IceSkating;
+                case "ROLLER_SKIING": return TrainingType.RollerSkating;
                 case "CYCLING_SPORT":return TrainingType.Cycling;
                 case "TABLE_TENNIS": return TrainingType.TableTennis;
                 case "SKATEBOARDING": return TrainingType.Skateboarding;
                 case "STRETCHING": return TrainingType.Stretching;
+                case "ROWING_INDOOR": return TrainingType.Rowing;
+                case "ICE_SKATING": return TrainingType.IceSkating;
+                case "CROSS_TRAINING": return TrainingType.CrossFit;
+                case "STAIR_CLIMBING": return TrainingType.Other;
+                case "ROPE_JUMPING": return TrainingType.Other;
+                case "MARTIAL_ARTS": return TrainingType.MatirialArts;
+                case "SOCCER": return TrainingType.Soccer;
+                case "RUNNING_TRAIL": return TrainingType.TrailRunning;
+                case "SURFING": return TrainingType.Surfing;
+
+
+
                 default: throw new Exception();
             }
         }
