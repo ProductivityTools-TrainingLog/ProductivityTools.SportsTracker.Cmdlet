@@ -28,6 +28,9 @@ namespace ProductivityTools.SportsTracker.AddTraining
         [Parameter]
         public int Minutes { get; set; }
 
+        [Parameter]
+        public string ImagePath { get; set; }
+
         public AddTrainingCmdlet()
         {
         }
