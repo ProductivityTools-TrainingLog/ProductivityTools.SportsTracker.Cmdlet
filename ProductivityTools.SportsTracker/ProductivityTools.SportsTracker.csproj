@@ -17,10 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="AddTraining\Commands\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\ProductivityTools.SportsTracker.App\ProductivityTools.SportsTracker.App.csproj" />
     <ProjectReference Include="..\ProductivityTools.SportsTracker.EndomondoImport\ProductivityTools.SportsTracker.Endomondo.csproj" />
   </ItemGroup>

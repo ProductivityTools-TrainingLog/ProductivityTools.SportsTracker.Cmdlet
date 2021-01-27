@@ -6,6 +6,7 @@ namespace ProductivityTools.SportsTracker.App.Dto
 {
     public enum TrainingType
     {
+        NotDefined=-1,
         Running = 1,
         Walking = 0,
         Fitness = 32,
