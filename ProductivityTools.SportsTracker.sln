@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductivityTools.SportsTra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductivityTools.SportsTracker.App", "ProductivityTools.SportsTracker.App\ProductivityTools.SportsTracker.App.csproj", "{5ED0217F-F69F-404B-8D13-6027E2E8ADA6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductivityTools.SportsTracker.Endomondo", "ProductivityTools.SportsTracker.EndomondoImport\ProductivityTools.SportsTracker.Endomondo.csproj", "{AD670DC2-0542-4FEB-A1D9-3FB87EE195C5}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{5ED0217F-F69F-404B-8D13-6027E2E8ADA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5ED0217F-F69F-404B-8D13-6027E2E8ADA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5ED0217F-F69F-404B-8D13-6027E2E8ADA6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AD670DC2-0542-4FEB-A1D9-3FB87EE195C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AD670DC2-0542-4FEB-A1D9-3FB87EE195C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AD670DC2-0542-4FEB-A1D9-3FB87EE195C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AD670DC2-0542-4FEB-A1D9-3FB87EE195C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
