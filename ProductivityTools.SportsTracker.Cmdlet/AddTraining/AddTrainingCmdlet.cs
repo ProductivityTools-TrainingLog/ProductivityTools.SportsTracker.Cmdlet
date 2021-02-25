@@ -28,13 +28,19 @@ namespace ProductivityTools.SportsTracker.AddTraining
         [Parameter]
         public int Minutes { get; set; }
 
+        [Parameter]
+        public string ImagePath { get; set; }
+
+        [Parameter]
+        public int Distance { get; set; }
+
         public AddTrainingCmdlet()
         {
         }
 
         protected override void ProcessRecord()
         {
-            AddCommand(new Fitness(this));
+            AddCommand(new General(this));
             base.ProcessCommands();
             base.ProcessRecord();
         }
