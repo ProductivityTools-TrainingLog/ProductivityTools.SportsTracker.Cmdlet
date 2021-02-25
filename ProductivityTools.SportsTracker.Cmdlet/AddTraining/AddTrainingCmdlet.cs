@@ -1,5 +1,5 @@
 ﻿﻿using ProductivityTools.SportsTracker.AddTraining.Commands;
-using ProductivityTools.SportsTracker.App.Dto;
+using ProductivityTools.SportsTracker.SDK.Model;
 using System;
 using System.Collections.Generic;
 using System.Management.Automation;

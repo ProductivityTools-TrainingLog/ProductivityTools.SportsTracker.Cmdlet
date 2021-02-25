@@ -1,5 +1,4 @@
-﻿using ProductivityTools.SportsTracker.App.Dto;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 

@@ -1,5 +1,4 @@
-﻿using ProductivityTools.SportsTracker.App.Dto;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -16,7 +15,7 @@ namespace ProductivityTools.SportsTracker.AddTraining.Commands
 
         protected override void Invoke()
         {
-            var Training = new Training();
+            var Training = new SDK.Model.Training();
             Training.SharingFlags = 19;//public
 
             Training.Duration = TimeSpan.FromMinutes(this.Cmdlet.Duration);
