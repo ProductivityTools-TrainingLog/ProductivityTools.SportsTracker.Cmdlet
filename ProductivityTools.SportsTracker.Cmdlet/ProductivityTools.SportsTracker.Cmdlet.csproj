@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ProductivityTools.SportsTracker.App\ProductivityTools.SportsTracker.App.csproj" />
+    <ProjectReference Include="..\ProductivityTools.SportsTracker.Cmdlet.App\ProductivityTools.SportsTracker.Cmdlet.App.csproj" />
   </ItemGroup>
 
 </Project>

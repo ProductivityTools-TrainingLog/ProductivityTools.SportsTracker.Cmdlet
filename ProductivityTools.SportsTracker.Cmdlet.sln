@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30002.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductivityTools.SportsTracker", "ProductivityTools.SportsTracker\ProductivityTools.SportsTracker.csproj", "{1D7CC364-2972-44FD-996B-E88821BB9BAC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductivityTools.SportsTracker.Cmdlet", "ProductivityTools.SportsTracker.Cmdlet\ProductivityTools.SportsTracker.Cmdlet.csproj", "{1D7CC364-2972-44FD-996B-E88821BB9BAC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductivityTools.SportsTracker.App", "ProductivityTools.SportsTracker.App\ProductivityTools.SportsTracker.App.csproj", "{5ED0217F-F69F-404B-8D13-6027E2E8ADA6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductivityTools.SportsTracker.Cmdlet.App", "ProductivityTools.SportsTracker.Cmdlet.App\ProductivityTools.SportsTracker.Cmdlet.App.csproj", "{5ED0217F-F69F-404B-8D13-6027E2E8ADA6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

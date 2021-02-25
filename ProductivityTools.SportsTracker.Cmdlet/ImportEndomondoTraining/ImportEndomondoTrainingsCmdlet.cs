@@ -23,8 +23,8 @@ namespace ProductivityTools.SportsTracker.ImportTraining
             //fs.Read(data, 0, data.Length);
             //fs.Close();
             //Invoke2();
-            var import = new ProductivityTools.SportsTracker.Endomondo.EndomondoImport(@"d:\Trash\Workouts\");
-            import.Import();
+           // var import = new ProductivityTools.SportsTracker.Endomondo.EndomondoImport(@"d:\Trash\Workouts\");
+           // import.Import();
             base.ProcessRecord();
         }
 
