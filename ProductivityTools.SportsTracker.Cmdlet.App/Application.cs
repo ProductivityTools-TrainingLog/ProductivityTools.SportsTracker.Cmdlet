@@ -27,18 +27,68 @@ namespace ProductivityTools.SportsTracker.App
             return trainingList;
         }
 
-        public void AddTraining(Training training)
+        public void AddTraining(
+            int duration,
+            TrainingType trainingType,
+            DateTime date,
+            string time,
+            string description,
+            int distance,
+            string path)
         {
-            AddTraining(training, null, null);
+            var Training = new SDK.Model.Training();
+            Training.SharingFlags = 19;//public
+
+            Training.Duration = TimeSpan.FromMinutes(duration);
+            Training.StartDate = GetStartDate(date, time);
+            Training.TrainingType = trainingType;
+            Training.Description = description;
+            Training.Distance = distance;
+
+            if (!string.IsNullOrEmpty(path))
+            {
+                //string s = @"c:\Users\pwujczyk\Desktop\Pamela.jpg";
+                byte[] bytes = File.ReadAllBytes(path);
+                this.SportsTracker.AddTraining(Training, bytes);
+            }
+            else
+            {
+                this.SportsTracker.AddTraining(Training);
+            }
+        }
+
+        private DateTime GetStartDate(DateTime date, string time)
+        {
+            if (string.IsNullOrEmpty(time))
+            {
+                if (date == DateTime.MinValue)
+                {
+                    return DateTime.Now;
+                }
+                else
+                {
+                    return date;
+                }
+            }
+            else
+            {
+                string[] parts = time.Split(':');
+                int hours = int.Parse(parts[0]);
+                int minutes = int.Parse(parts[1]);
+
+                int timeInMinutes = hours * 60 + minutes;
+
+                return DateTime.Now.Date.AddMinutes(timeInMinutes);
+            }
         }
 
 
-        public void AddTraining(Training training, byte[] gpxFile, byte[] image)
+        private void AddTraining(Training training, byte[] gpxFile, byte[] image)
         {
 
         }
 
-        public void AddTraining(Training training, byte[] image)
+        private void AddTraining(Training training, byte[] image)
         {
             AddTraining(training, null, image);
         }
