@@ -25,4 +25,10 @@
     <ProjectReference Include="..\ProductivityTools.SportsTracker.Cmdlet.App\ProductivityTools.SportsTracker.Cmdlet.App.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="ProductivityTools.SportsTracker.psd1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
