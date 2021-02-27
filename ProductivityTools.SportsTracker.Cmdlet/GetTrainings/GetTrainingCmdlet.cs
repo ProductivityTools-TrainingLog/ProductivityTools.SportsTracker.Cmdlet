@@ -11,7 +11,7 @@ namespace ProductivityTools.SportsTracker.GetTrainings
     {
         protected override void ProcessRecord()
         {
-            WriteOutput("Hello TrainingList");
+            WriteVerbose("Hello TrainingList");
             var trainings = base.Application.GetTrainingList();
             foreach(var training in trainings.OrderBy(x=>x.StartDate))
             {

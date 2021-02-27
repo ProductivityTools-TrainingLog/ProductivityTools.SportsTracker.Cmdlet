@@ -25,8 +25,8 @@ namespace ProductivityTools.SportsTracker.AddTraining
         [Parameter(Mandatory = false, HelpMessage = "Time of the day when training happened, if not provided training will be created with current time. Format HH:MM")]
         public string Time { get; set; }
 
-        [Parameter(Mandatory = false)]
-        public int Minutes { get; set; }
+        //[Parameter(Mandatory = false)]
+        //public int Minutes { get; set; }
 
         [Parameter(Mandatory = false)]
         public string ImagePath { get; set; }

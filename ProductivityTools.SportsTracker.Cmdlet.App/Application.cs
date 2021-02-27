@@ -40,6 +40,7 @@ namespace ProductivityTools.SportsTracker.App
             Training.SharingFlags = 19;//public
 
             Training.Duration = TimeSpan.FromMinutes(duration);
+            if (date==DateTime.MinValue) { date = DateTime.Now; }
             Training.StartDate = GetStartDate(date, time);
             Training.TrainingType = trainingType;
             Training.Description = description;
@@ -78,7 +79,7 @@ namespace ProductivityTools.SportsTracker.App
 
                 int timeInMinutes = hours * 60 + minutes;
 
-                return DateTime.Now.Date.AddMinutes(timeInMinutes);
+                return date.Date.AddMinutes(timeInMinutes);
             }
         }
 
