@@ -16,9 +16,9 @@ namespace ProductivityTools.SportsTracker.App
     {
         SDK.SportsTracker SportsTracker;
 
-        public Application(string username, string password)
+        public Application(string username, string password, bool verbose)
         {
-            this.SportsTracker = new ProductivityTools.SportsTracker.SDK.SportsTracker(username, password);
+            this.SportsTracker = new ProductivityTools.SportsTracker.SDK.SportsTracker(username, password, verbose);
         }
 
         public List<Training> GetTrainingList()

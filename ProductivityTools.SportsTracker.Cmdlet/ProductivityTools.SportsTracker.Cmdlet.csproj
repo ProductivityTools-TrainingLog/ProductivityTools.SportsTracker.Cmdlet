@@ -14,7 +14,7 @@
   <ItemGroup>
     <PackageReference Include="ProductivityTools.MasterConfiguration" Version="2.0.5" />
     <PackageReference Include="ProductivityTools.PSCmdlet" Version="1.0.1" />
-    <PackageReference Include="ProductivityTools.SportsTracker.SDK" Version="0.0.13" />
+    <PackageReference Include="ProductivityTools.SportsTracker.SDK" Version="0.0.15" />
   </ItemGroup>
 
   <ItemGroup>
