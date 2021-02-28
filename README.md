@@ -28,8 +28,9 @@ Add-Training -TrainingType AlpineSkiing -Description "description" -Duration 20 
 
 Add-Training -TrainingType AlpineSkiing -Description "description" -Duration 20 -Date "2020.02.26" -Time "08:09" -Distance 69 -Login pawel@pawel.pl -Password "fdsa" -Verbose
 ```
-
  
+ 
+ ![Example](Images/TrainingCmdlet.png)
  <!--og-image-->
- ![Example](Images/Test.png)
+ ![Example](Images/TrainingAdded.png)
  .
