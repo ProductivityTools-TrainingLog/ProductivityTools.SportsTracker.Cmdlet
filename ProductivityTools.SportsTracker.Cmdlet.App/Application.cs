@@ -83,12 +83,6 @@ namespace ProductivityTools.SportsTracker.App
             }
         }
 
-
-        private void AddTraining(Training training, byte[] gpxFile, byte[] image)
-        {
-
-        }
-
         private void AddTraining(Training training, byte[] image)
         {
             AddTraining(training, null, image);
