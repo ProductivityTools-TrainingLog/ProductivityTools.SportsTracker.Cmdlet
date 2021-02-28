@@ -82,12 +82,6 @@ namespace ProductivityTools.SportsTracker.App
                 return date.Date.AddMinutes(timeInMinutes);
             }
         }
-
-        private void AddTraining(Training training, byte[] image)
-        {
-            AddTraining(training, null, image);
-        }
-
     }
 }
 
