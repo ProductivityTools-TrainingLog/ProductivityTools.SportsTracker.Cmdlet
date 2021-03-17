@@ -2,7 +2,7 @@
  <p align="right">
     <a href="https://www.powershellgallery.com/packages/ProductivityTools.SportsTracker/"><img src="Images/Header/Powershell_border_40px.png" /></a>
     <a href="http://productivitytools.tech/sports-tracker-cmdlet//"><img src="Images/Header/ProductivityTools_green_40px_2.png" /><a> 
-    <a href="https://github.com/ProductivityTools-TrainingLog/ProductivityTools.SportsTracker.SDK"><img src="Images/Header/Github_border_40px.png" /></a>
+    <a href="https://github.com/ProductivityTools-TrainingLog/ProductivityTools.SportsTracker.Cmdlet"><img src="Images/Header/Github_border_40px.png" /></a>
 </p>
 <p align="center">
     <a href="http://productivitytools.tech/">
@@ -32,6 +32,7 @@ Add-Training -TrainingType AlpineSkiing -Description "description" -Duration 20 
  ![Cmdlet Example](Images/TrainingCmdlet.png)
 
  After adding training through module we can see it in the portal.
+
  <!--og-image-->
  ![Example](Images/TrainingAdded.png)
- .
+ 
